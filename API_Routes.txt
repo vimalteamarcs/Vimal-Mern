@@ -1,0 +1,6 @@
+(get) all the roles-http://localhost:8080/auth/getAllRoles
+(get) otp id-http://localhost:8080/auth/getotp/:id
+
+login(post)-http://localhost:8080/auth/login
+signup(post)-http://localhost:8080/auth/signup
+otp(post)-http://localhost:8080/auth/otp
