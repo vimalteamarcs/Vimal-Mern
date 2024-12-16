@@ -21,7 +21,7 @@ export class SignUpDto {
   password: any;
 
 
-  @IsString()
+  @IsNotEmpty()
   role: any;
 
   @IsNotEmpty()
@@ -34,7 +34,7 @@ export class SignUpDto {
 
 
   @IsString()
-  token: any;
+  token: any; 
 
   @IsNotEmpty()
   @IsString()

@@ -20,7 +20,7 @@ export class User {
   password: string;
 
   @Prop({ required: true })
-  role: string;
+  role: number;
 
   @Prop({ required: true })
   status: string;

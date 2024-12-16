@@ -22,7 +22,7 @@ export class AuthService {
         private jwtService: JwtService) { }
 
 
-    async signUp(signUpDto: SignUpDto): Promise<{ token: string; role: string; userid: any; }> {
+    async signUp(signUpDto: SignUpDto): Promise<{ token: any; role: any; userid: any; }> {
         const { name, email, phone, password, role, status, last_login, token, otp } = signUpDto;
 
 
@@ -47,7 +47,7 @@ export class AuthService {
         await user.save();
         return { token: jwtToken, role: user.role, userid: user._id };
     }
-    async login(loginDto: LoginDto): Promise<{ token: string, role: string }> {
+    async login(loginDto: LoginDto): Promise<{ token: any, user: any }> {
 
         const { email, password } = loginDto;
 
@@ -69,7 +69,7 @@ export class AuthService {
             user.save()
         }
 
-        return { token, role: user.role };
+        return { token, user: user };
     }
 
     async getotp(id: any): Promise<any> {
