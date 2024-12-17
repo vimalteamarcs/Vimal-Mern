@@ -22,6 +22,8 @@ async function bootstrap() {
   mongoose.connection.on('error', (err) => {
     console.error('Database connection error:', err);
   });
+
+
   await app.listen(process.env.PORT ?? 8080);
   console.log(`App is started on http://localhost:${process.env.PORT ?? 8080}`);
 }

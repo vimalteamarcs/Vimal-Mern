@@ -31,7 +31,7 @@ export class User {
   @Prop({ required: false })
   token: string;
 
-  @Prop({ required: true })
+  @Prop({ required: false })
   otp: string;
 }
 

@@ -1,0 +1,45 @@
+[{
+  "_id": {
+    "$oid": "675bdf5d69089b975058c2ae"
+  },
+  "id": 1,
+  "role_name": "Vendor",
+  "role_slug": "vendor",
+  "status": "active",
+  "created_at": {
+    "$date": "2024-12-13T07:16:45.015Z"
+  },
+  "updated_at": {
+    "$date": "2024-12-13T07:16:45.015Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "675bdf5d69089b975058c2af"
+  },
+  "id": 2,
+  "role_name": "Restaurant",
+  "role_slug": "restaurant",
+  "status": "active",
+  "created_at": {
+    "$date": "2024-12-13T07:16:45.015Z"
+  },
+  "updated_at": {
+    "$date": "2024-12-13T07:16:45.015Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "675bdf5d69089b975058c2b0"
+  },
+  "id": 3,
+  "role_name": "User",
+  "role_slug": "user",
+  "status": "active",
+  "created_at": {
+    "$date": "2024-12-13T07:16:45.015Z"
+  },
+  "updated_at": {
+    "$date": "2024-12-13T07:16:45.015Z"
+  }
+}]

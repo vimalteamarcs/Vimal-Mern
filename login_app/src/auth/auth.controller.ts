@@ -43,16 +43,16 @@ export class AuthController {
         return this.authsevice.getAllRoles();
     }
 
-    @Post('otp')
-    async postUserOtp(@Body() body: { userid: string; otp: number }): Promise<any> {
-        const { userid, otp } = body;
-        if (!userid || !otp) {
-            throw new Error('userid and otp are required');
-        }
+    // @Post('otp')
+    // async postUserOtp(@Body() body: { userid: string; otp: number }): Promise<any> {
+    //     const { userid, otp } = body;
+    //     if (!userid || !otp) {
+    //         throw new Error('userid and otp are required');
+    //     }
 
 
 
-        return this.authsevice.saveUserOtp(userid, otp);
-    }
+    //     return this.authsevice.saveUserOtp(userid, otp);
+    // }
 
 }

@@ -22,22 +22,6 @@ export class SignUpDto {
 
 
   @IsNotEmpty()
-  role: any;
-
-  @IsNotEmpty()
-  @IsString()
-  status: any;
-
-  @IsNotEmpty()
-
-  last_login: Date;
-
-
-  @IsString()
-  token: any; 
-
-  @IsNotEmpty()
-  @IsString()
-  otp: number;
+  role: number;
 
 }

@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { DashboardController } from './dashboard.controller';
 import { DashboardService } from './dashboard.service';
 
@@ -8,6 +8,7 @@ import { ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { User } from './schemas/user.schema';
 import { AllRoles } from './schemas/allroles.schema';
+import { CheckTokenMiddleware } from 'src/check-token/check-token.middleware';
 
 @Module({
   imports: [
@@ -33,4 +34,12 @@ import { AllRoles } from './schemas/allroles.schema';
   controllers: [DashboardController],
   providers: [DashboardService]
 })
-export class DashboardModule { }
+export class DashboardModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(CheckTokenMiddleware)
+      .forRoutes('/dashboard');  // Apply middleware to specific routes or controllers
+  }
+}
+
+

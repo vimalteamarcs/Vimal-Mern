@@ -1,8 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import { HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { User } from './schemas/user.schema';
 import { Model } from 'mongoose';
 import { AllRoles } from './schemas/allroles.schema';
+import { ApiResponse } from 'src/common/response.helper';
 
 @Injectable()
 export class DashboardService {
@@ -10,21 +11,37 @@ export class DashboardService {
         @InjectModel(User.name) private userModel: Model<User>,
         @InjectModel(AllRoles.name) private allRolesModel: Model<AllRoles>,
     ) { }
-    async getAllUsers() {
-        const users = await this.userModel.aggregate([
-            {
-                $lookup: {
-                    from: 'AllRoles',
-                    localField: 'role',
-                    foreignField: 'id',
-                    as: 'role_details',
-                },
-            },
-            {
-                $unwind: '$role_details',
-            },
-        ]);
 
-        return users;
+    async getAllUsers() {
+        try {
+            const users = await this.userModel.aggregate([
+                {
+                    $lookup: {
+                        from: 'AllRoles',
+                        localField: 'role',
+                        foreignField: 'id',
+                        as: 'role_details',
+                    },
+                },
+                {
+                    $unwind: '$role_details',
+                },
+            ]);
+
+            return new ApiResponse(
+                HttpStatus.OK,
+                'success',
+                'Users retrieved successfully',
+                users
+            );
+        } catch (error) {
+            return new ApiResponse(
+                HttpStatus.INTERNAL_SERVER_ERROR,
+                'error',
+                'Failed to retrieve users',
+                null
+            );
+        }
     }
+
 }

@@ -7,7 +7,10 @@ export class UserOtp {
     userid: string;
 
     @Prop({ required: true })
-    otp: number;
+    otp: string;
+
+    @Prop({ required: false })
+    expiresAt: Date;
 }
 
 export const UserOtpSchema = SchemaFactory.createForClass(UserOtp);
