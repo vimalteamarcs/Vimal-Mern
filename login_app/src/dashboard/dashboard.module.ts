@@ -38,7 +38,7 @@ export class DashboardModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
       .apply(CheckTokenMiddleware)
-      .forRoutes('/dashboard');  // Apply middleware to specific routes or controllers
+      .forRoutes('/dashboard');
   }
 }
 

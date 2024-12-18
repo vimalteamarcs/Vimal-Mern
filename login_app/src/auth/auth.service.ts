@@ -172,27 +172,70 @@ export class AuthService {
     }
 
     async getAllRoles(): Promise<any> {
-        const roles = await this.roleModel.find({ status: "active" });
+        try {
+            const roles = await this.roleModel.find({ status: "active" });
 
-        if (!roles || roles.length === 0) {
-            throw new NotFoundException('No roles found');
+            if (!roles || roles.length === 0) {
+                throw new NotFoundException('No roles found');
+            }
+
+
+            return new ApiResponse(
+                HttpStatus.OK,
+                'success',
+                'Roles retrieved successfully',
+                [roles]
+            );
+        } catch (error) {
+            return new ApiResponse(
+                HttpStatus.INTERNAL_SERVER_ERROR,
+                'error',
+                'Failed to retrieved Roles',
+                null
+            );
         }
-
-        return roles;
     }
 
-    // async saveUserOtp(userid: string, otp: number): Promise<any> {
+    async CheckUserOtp(userid: string, otp: string): Promise<any> {
+        try {
+            const existingUser = await this.userOtpModel.findOne({ userid });
 
-    //     const existingUser = await this.userOtpModel.findOne({ userid });
+            if (existingUser) {
 
-    //     if (existingUser) {
-    //         existingUser.otp = otp;
-    //         await existingUser.save();
-    //         return existingUser._id.toString();
-    //     } else {
-    //         const userOtp = new this.userOtpModel({ userid, otp });
-    //         await userOtp.save();
-    //         return userOtp._id.toString();
-    //     }
-    // }
+                if (Number(existingUser.otp.toString()) === Number(otp.toString())) {
+                    return new ApiResponse(
+                        HttpStatus.OK,
+                        'success',
+                        'OTP Matched successfully',
+                        [{ userid }]
+                    );
+                }
+                return new ApiResponse(
+                    HttpStatus.NOT_FOUND,
+                    'failed',
+                    "OTP did not Matched",
+                    [{ userid }]
+                );
+
+
+            }
+            else {
+                return new ApiResponse(
+                    HttpStatus.NOT_FOUND,
+                    'failed',
+                    "User Not Found",
+                    [{ userid }]
+                );
+            }
+
+
+        } catch (error) {
+            return new ApiResponse(
+                HttpStatus.INTERNAL_SERVER_ERROR,
+                'error',
+                'Failed to retrieved Roles',
+                null
+            );
+        }
+    }
 }

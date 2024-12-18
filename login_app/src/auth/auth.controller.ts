@@ -1,8 +1,9 @@
-import { Body, Controller, Get, Post, Query, Logger, Param } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query, Logger, Param, HttpStatus } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { SignUpDto } from './dto/signupUser.dto';
 import { LoginDto } from './dto/loginUser.dto';
 import { plainToClass } from 'class-transformer';
+import { ApiResponse } from 'src/common/response.helper';
 
 @Controller('auth')
 export class AuthController {
@@ -43,16 +44,18 @@ export class AuthController {
         return this.authsevice.getAllRoles();
     }
 
-    // @Post('otp')
-    // async postUserOtp(@Body() body: { userid: string; otp: number }): Promise<any> {
-    //     const { userid, otp } = body;
-    //     if (!userid || !otp) {
-    //         throw new Error('userid and otp are required');
-    //     }
-
-
-
-    //     return this.authsevice.saveUserOtp(userid, otp);
-    // }
+    @Post('checkotp')
+    async CheckUserOtp(@Body() body: { userid: string; otp: string }): Promise<any> {
+        const { userid, otp } = body;
+        if (!userid || !otp) {
+            return new ApiResponse(
+                                HttpStatus.NOT_FOUND,
+                                'failed',
+                                "User or OTP Required",
+                                [{ userid,otp }]
+                            );
+        }
+        return this.authsevice.CheckUserOtp(userid, otp);
+    }
 
 }
