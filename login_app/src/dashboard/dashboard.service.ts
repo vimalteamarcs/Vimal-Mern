@@ -26,6 +26,18 @@ export class DashboardService {
                 {
                     $unwind: '$role_details',
                 },
+                {
+                    $project: {
+                        name: 1,
+                        email: 1,
+                        phone: 1,
+                        status: 1,
+                        role_name: '$role_details.role_name',
+
+
+                    },
+                },
+
             ]);
 
             return new ApiResponse(
