@@ -4,6 +4,7 @@ import { User } from './schemas/user.schema';
 import { Model } from 'mongoose';
 import { AllRoles } from './schemas/allroles.schema';
 import { ApiResponse } from 'src/common/response.helper';
+import { DeleteUserDto } from './dto/deleteUser.dto';
 
 @Injectable()
 export class DashboardService {
@@ -54,6 +55,36 @@ export class DashboardService {
                 null
             );
         }
+    }
+    async deleteuserbyid(deleteUserDto: DeleteUserDto) {
+
+        try {
+            const result = await this.userModel.findByIdAndDelete(deleteUserDto);
+
+            if (!result) {
+
+                return new ApiResponse(
+                    HttpStatus.NOT_FOUND,
+                    'Not Found',
+                    'User not found',
+                    []
+                );
+            }
+            return new ApiResponse(
+                HttpStatus.OK,
+                'success',
+                'Users Deleted successfully',
+                [{ "_id": deleteUserDto }]
+            );
+        } catch (error) {
+            return new ApiResponse(
+                HttpStatus.INTERNAL_SERVER_ERROR,
+                'error',
+                'Failed to Deleted user',
+                null
+            );
+        }
+
     }
 
 }
