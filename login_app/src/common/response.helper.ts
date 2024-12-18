@@ -11,7 +11,7 @@ export async function uploadFile(file: Express.Multer.File): Promise<string> {
     year: 'numeric',
   }).replace(/,/g, '').replace(/\s+/g, '_');
   const formattedTime = now.toTimeString().split(' ')[0].replace(/:/g, '_');
-  const folderPath = path.join(process.cwd(), `uploads/files/${formattedDate}_${formattedTime}`);
+  const folderPath = path.join(`uploads/files/${formattedDate}_${formattedTime}`);
   if (!fs.existsSync(folderPath)) {
     fs.mkdirSync(folderPath, { recursive: true });
   }

@@ -3,5 +3,8 @@
 
 login(post)-http://localhost:8080/auth/login
 signup(post)-http://localhost:8080/auth/signup
-checkotp(post)-http://localhost:8080/auth/checkotp
+
+
+with token in header
 (get)allUser-http://localhost:8080/dashboard/alluser
+(post)upload a file-http://localhost:8080/filehandle/upload
