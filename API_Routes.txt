@@ -3,5 +3,5 @@
 
 login(post)-http://localhost:8080/auth/login
 signup(post)-http://localhost:8080/auth/signup
-otp(post)-http://localhost:8080/auth/otp
+checkotp(post)-http://localhost:8080/auth/checkotp
 (get)allUser-http://localhost:8080/dashboard/alluser
