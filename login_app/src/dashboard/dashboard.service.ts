@@ -56,10 +56,10 @@ export class DashboardService {
             );
         }
     }
-    async deleteuserbyid(deleteUserDto: DeleteUserDto) {
+    async deleteuserbyid(id: any) {
 
         try {
-            const result = await this.userModel.findByIdAndDelete(deleteUserDto);
+            const result = await this.userModel.findByIdAndDelete(id);
 
             if (!result) {
 
@@ -74,7 +74,7 @@ export class DashboardService {
                 HttpStatus.OK,
                 'success',
                 'Users Deleted successfully',
-                [{ "_id": deleteUserDto }]
+                [{ "_id": id }]
             );
         } catch (error) {
             return new ApiResponse(

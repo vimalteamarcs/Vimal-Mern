@@ -1,9 +1,6 @@
-import { IsNotEmpty } from "class-validator"
+import { IsNotEmpty } from 'class-validator';
 
 export class DeleteUserDto {
-
-    @IsNotEmpty()
-    readonly id: any;
-
+    @IsNotEmpty({ message: 'ID must not be empty' })
+    id: any;
 }
-

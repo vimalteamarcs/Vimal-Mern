@@ -1,9 +1,9 @@
-import { Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { DashboardService } from './dashboard.service';
-
+import { DeleteUserDto } from './dto/deleteUser.dto';
 
 @Controller('dashboard')
-export class AllUser {
+export class DashboardController {
     constructor(private readonly dashboardService: DashboardService) { }
 
     @Get('alluser')
@@ -11,14 +11,10 @@ export class AllUser {
         return this.dashboardService.getAllUsers();
     }
 
-}
-@Controller('user')
-export class DashboardController {
-    constructor(private readonly dashUserService: DashboardService) { }
+    @Post('deleteuser')
+    deleteUserById(@Body() deleteUserDto: DeleteUserDto): Promise<any> {
+        console.log(deleteUserDto.id);
 
-    @Post('delete/:id')
-    deleteuserbyid(@Param('id') id: any): Promise<any> {
-        return this.dashUserService.deleteuserbyid(id);
+        return this.dashboardService.deleteuserbyid(deleteUserDto.id);
     }
-
 }

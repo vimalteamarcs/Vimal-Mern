@@ -39,6 +39,7 @@ export class DashboardModule implements NestModule {
     consumer
       .apply(CheckTokenMiddleware)
       .forRoutes('/dashboard');
+
   }
 }
 
