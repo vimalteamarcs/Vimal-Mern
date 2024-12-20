@@ -17,6 +17,9 @@ export class DashboardService {
         try {
             const users = await this.userModel.aggregate([
                 {
+                    $match: { status: "active" }
+                },
+                {
                     $lookup: {
                         from: 'AllRoles',
                         localField: 'role',

@@ -5,7 +5,8 @@ import { ApiResponse, uploadFile } from 'src/common/response.helper';
 export class FilehandleService {
     async handleFileUpload(file: Express.Multer.File) {
         try {
-            const result = await uploadFile(file);
+            const result = await 
+            (file);
 
             return new ApiResponse(
                 HttpStatus.OK,

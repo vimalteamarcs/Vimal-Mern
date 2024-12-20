@@ -173,7 +173,7 @@ export class AuthService {
 
     async getAllRoles(): Promise<any> {
         try {
-            const roles = await this.roleModel.find({ status: "active" });
+            const roles = await this.roleModel.find({ status: "active", role_name: { $ne: "Admin" } });
 
             if (!roles || roles.length === 0) {
                 throw new NotFoundException('No roles found');
@@ -191,7 +191,7 @@ export class AuthService {
                 HttpStatus.INTERNAL_SERVER_ERROR,
                 'error',
                 'Failed to retrieved Roles',
-                null
+                []
             );
         }
     }
@@ -214,7 +214,7 @@ export class AuthService {
                     HttpStatus.NOT_FOUND,
                     'failed',
                     "OTP did not Matched",
-                    [{ userid }]
+                    []
                 );
 
 
@@ -224,7 +224,7 @@ export class AuthService {
                     HttpStatus.NOT_FOUND,
                     'failed',
                     "User Not Found",
-                    [{ userid }]
+                    []
                 );
             }
 
