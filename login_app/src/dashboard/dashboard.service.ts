@@ -62,7 +62,10 @@ export class DashboardService {
     async deleteuserbyid(id: any) {
 
         try {
-            const result = await this.userModel.findByIdAndDelete(id);
+            const result = await this.userModel.updateOne(
+                { _id: id },
+                { $set: { status: "deleted" } }
+            );;
 
             if (!result) {
 

@@ -1,0 +1,24 @@
+Customer Panel
+Registration:
+•	Customers can sign up via the BMK website or BMK mobile app.
+•	During sign-up, users will provide necessary details such as name, email, contact number, and password.
+•	Option to register through third-party platforms like Google, Facebook accounts (if applicable).
+
+Account Verification:
+•	Upon signing up, customers will receive a verification link or OTP (One-Time Password) via email or SMS for authentication.
+•	Verified accounts gain full access to BMK’s features.
+Profile Setup:
+•	Users can complete their profile with additional information, including preferences, interests, and any specific requirements for a customized experience.
+•	Profile picture upload and social media links can also be added if desired.
+Platform Navigation:
+•	Users can browse available features, services, and events directly from their dashboard on the website or app.
+•	Access to categories like restaurants, vendors, upcoming events, and booking options will be presented in an organized format.
+Booking Process:
+•	Users can browse and book venues such as restaurants, hotels, clubs, conference rooms, and coworking spaces.
+•	Booking details include selected date, time, location and additional customization options.
+•	Users have the option to select amenities (e.g., decor accessories, games) during booking, allowing customization to fit their needs.
+•	Users can view available times and choose accordingly, with reminders set for bookings.
+•	Venue profiles are presented in a familiar card-style layout, with details on amenities, menu highlights, and ratings prominently displayed, inspired by Zomato and Dineout.
+•	Real-time venue availability, special request options, and customizable packages (e.g., Silver, Gold, Platinum tiers for restaurants).
+•	Secure payments, booking confirmations, and history tracking.
+•	Notifications for upcoming events and reminders.
