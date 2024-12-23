@@ -10,3 +10,4 @@ with token in header
 (post)upload a file-http://localhost:8080/filehandle/upload
 (post)delete a user:http://localhost:8080/dashboard/deleteuser
 (post)update user status:http://localhost:8080/dashboard/updateuserstatus
+(post)update multiple Fields:http://localhost:8080/dashboard/updateUserFields

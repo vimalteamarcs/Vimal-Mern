@@ -121,6 +121,38 @@ export class DashboardService {
             );
         }
     }
+    async updateUserFields(id: any, fieldsToUpdate: Record<string, any>) {
+        try {
+            const result = await this.userModel.updateOne(
+                { _id: id },
+                { $set: fieldsToUpdate }
+            );
+    
+            if (!result || result.matchedCount === 0) {
+                return new ApiResponse(
+                    HttpStatus.NOT_FOUND,
+                    'Not Found',
+                    'User not found',
+                    []
+                );
+            }
+    
+            return new ApiResponse(
+                HttpStatus.OK,
+                'success',
+                'User fields updated successfully',
+                [{ "_id": id, ...fieldsToUpdate }]
+            );
+        } catch (error) {
+            return new ApiResponse(
+                HttpStatus.INTERNAL_SERVER_ERROR,
+                'error',
+                'Failed to update user fields',
+                null
+            );
+        }
+    }
+    
 
 
 }
