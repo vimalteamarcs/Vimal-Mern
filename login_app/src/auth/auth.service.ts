@@ -190,7 +190,7 @@ export class AuthService {
                 HttpStatus.OK,
                 'success',
                 'Roles retrieved successfully',
-                [roles]
+                roles
             );
         } catch (error) {
             return new ApiResponse(
