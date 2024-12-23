@@ -9,3 +9,4 @@ with token in header
 (get)allUser-http://localhost:8080/dashboard/alluser
 (post)upload a file-http://localhost:8080/filehandle/upload
 (post)delete a user:http://localhost:8080/dashboard/deleteuser
+(post)update user status:http://localhost:8080/dashboard/updateuserstatus

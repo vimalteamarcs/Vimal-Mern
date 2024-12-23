@@ -28,8 +28,13 @@ export class AuthService {
         try {
             const { name, email, phone, password, role } = signUpDto;
             const last_login = new Date();
+            let status = "";
+            if (role === 1 || role === 2) {
+                status = "pending";
+            } else {
+                status = "active";
+            }
 
-            const status = "active";
 
             const existingUser = await this.userModel.findOne({ email });
             if (existingUser) {
@@ -173,7 +178,8 @@ export class AuthService {
 
     async getAllRoles(): Promise<any> {
         try {
-            const roles = await this.roleModel.find({ status: "active", role_name: { $ne: "Admin" } });
+            // const roles = await this.roleModel.find({ status: "active", role_name: { $ne: "Admin" } });
+            const roles = await this.roleModel.find({ role_name: { $ne: "Admin" } });
 
             if (!roles || roles.length === 0) {
                 throw new NotFoundException('No roles found');
