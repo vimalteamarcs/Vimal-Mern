@@ -92,5 +92,37 @@ export class DashboardService {
         }
 
     }
+    async updateUserStatus(id: any, status: string) {
+        try {
+            const result = await this.userModel.updateOne(
+                { _id: id },
+                { $set: { status: status } }
+            );
+    
+            if (!result || result.matchedCount === 0) {
+                return new ApiResponse(
+                    HttpStatus.NOT_FOUND,
+                    'Not Found',
+                    'User not found',
+                    []
+                );
+            }
+    
+            return new ApiResponse(
+                HttpStatus.OK,
+                'success',
+                'User status updated successfully',
+                [{ "_id": id, "status": status }]
+            );
+        } catch (error) {
+            return new ApiResponse(
+                HttpStatus.INTERNAL_SERVER_ERROR,
+                'error',
+                'Failed to update user status',
+                null
+            );
+        }
+    }
+    
 
 }

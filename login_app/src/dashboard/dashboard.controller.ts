@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { DashboardService } from './dashboard.service';
 import { DeleteUserDto } from './dto/deleteUser.dto';
+import { UpdateUserStatusDto } from './dto/updateuserstatus.dto';
 
 @Controller('dashboard')
 export class DashboardController {
@@ -16,5 +17,11 @@ export class DashboardController {
         console.log(deleteUserDto.id);
 
         return this.dashboardService.deleteuserbyid(deleteUserDto.id);
+    }
+    @Post('updateuserstatus')
+    updateUserStatus(@Body() updateuserstatus: UpdateUserStatusDto): Promise<any> {
+
+
+        return this.dashboardService.updateUserStatus(updateuserstatus.id, updateuserstatus.status);
     }
 }
