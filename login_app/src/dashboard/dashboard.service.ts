@@ -16,7 +16,7 @@ export class DashboardService {
     async getAllUsers() {
         try {
             const users = await this.userModel.aggregate([
-
+                { $match: { status: { $ne: "deleted" } } },
                 {
                     $lookup: {
                         from: 'AllRoles',
@@ -127,7 +127,7 @@ export class DashboardService {
                 { _id: id },
                 { $set: fieldsToUpdate }
             );
-    
+
             if (!result || result.matchedCount === 0) {
                 return new ApiResponse(
                     HttpStatus.NOT_FOUND,
@@ -136,7 +136,7 @@ export class DashboardService {
                     []
                 );
             }
-    
+
             return new ApiResponse(
                 HttpStatus.OK,
                 'success',
@@ -152,7 +152,7 @@ export class DashboardService {
             );
         }
     }
-    
+
 
 
 }

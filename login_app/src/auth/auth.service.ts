@@ -1,4 +1,4 @@
-import { ConflictException, HttpStatus, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
+import { BadRequestException, ConflictException, HttpStatus, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { User } from './schemas/auth.schema';
 import { AllRoles } from './schemas/auth_getallroles.schema'
@@ -73,10 +73,10 @@ export class AuthService {
             );
         } catch (error) {
             return new ApiResponse(
-                HttpStatus.INTERNAL_SERVER_ERROR,
-                'error',
-                'Failed to Signup',
-                null
+                error.status,
+                error.name,
+                error.message,
+                []
             );
         }
     }
@@ -88,12 +88,12 @@ export class AuthService {
             const user = await this.userModel.findOne({ email }).select('-createdAt -updatedAt -otp -last_login');
 
             if (!user) {
-                throw new UnauthorizedException('Invalid email or password');
+                throw new BadRequestException('Invalid email or password');
             }
 
             const isPasswordValid = await bcrypt.compare(password, user.password);
             if (!isPasswordValid) {
-                throw new UnauthorizedException('Invalid email or password');
+                throw new BadRequestException('Invalid email or password');
             }
 
             const userWithRole = await this.userModel.aggregate([
@@ -140,11 +140,12 @@ export class AuthService {
                 [{ token, user: userResult }]
             );
         } catch (error) {
+
             return new ApiResponse(
-                HttpStatus.INTERNAL_SERVER_ERROR,
-                'error',
-                'Failed to Login',
-                null
+                error.status,
+                error.name,
+                error.message,
+                []
             );
         }
 
@@ -167,10 +168,10 @@ export class AuthService {
             );
         } catch (error) {
             return new ApiResponse(
-                HttpStatus.INTERNAL_SERVER_ERROR,
-                'error',
-                'Failed to retrieved OTP',
-                null
+                error.status,
+                error.name,
+                error.message,
+                []
             );
         }
 
@@ -194,9 +195,9 @@ export class AuthService {
             );
         } catch (error) {
             return new ApiResponse(
-                HttpStatus.INTERNAL_SERVER_ERROR,
-                'error',
-                'Failed to retrieved Roles',
+                error.status,
+                error.name,
+                error.message,
                 []
             );
         }
@@ -237,10 +238,10 @@ export class AuthService {
 
         } catch (error) {
             return new ApiResponse(
-                HttpStatus.INTERNAL_SERVER_ERROR,
-                'error',
-                'Failed to retrieved Roles',
-                null
+                error.status,
+                error.name,
+                error.message,
+                []
             );
         }
     }
