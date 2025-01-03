@@ -7,8 +7,10 @@ import { Mongoose } from 'mongoose';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AuthModule } from './auth/auth.module';
 import { DashboardModule } from './dashboard/dashboard.module';
-import { FilehandleModule } from './filehandle/filehandle.module';
+
 import { MulterModule } from '@nestjs/platform-express';
+import { PaymentsModule } from './payments/payments.module';
+import { BusinessModule } from './business/business.module';
 
 
 
@@ -19,11 +21,12 @@ import { MulterModule } from '@nestjs/platform-express';
       isGlobal: true
     }),
     MongooseModule.forRoot(process.env.DB_URI),
-
     AuthModule,
     DashboardModule,
     MulterModule.register({ dest: `./uploads/${new Date()}` }),
-    FilehandleModule,
+    BusinessModule,
+    PaymentsModule
+
 
   ],
   controllers: [AppController],

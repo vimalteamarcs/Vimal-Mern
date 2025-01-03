@@ -12,10 +12,15 @@ export class DashboardController {
     getAllUsers(): Promise<any> {
         return this.dashboardService.getAllUsers();
     }
+    @Post('getuserbyid')
+    getuserbyId(@Body() deleteUserDto: DeleteUserDto): Promise<any> {
 
+
+        return this.dashboardService.getuserbyId(deleteUserDto.id);
+    }
     @Post('deleteuser')
     deleteUserById(@Body() deleteUserDto: DeleteUserDto): Promise<any> {
-        console.log(deleteUserDto.id);
+
 
         return this.dashboardService.deleteuserbyid(deleteUserDto.id);
     }
