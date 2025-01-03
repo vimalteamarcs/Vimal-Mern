@@ -210,6 +210,7 @@ export class AuthService {
     }
   }
 
+  //check otp
   async CheckUserOtp(userid: string, otp: string): Promise<any> {
     try {
       const existingUser = await this.userOtpModel.findOne({ userid });
